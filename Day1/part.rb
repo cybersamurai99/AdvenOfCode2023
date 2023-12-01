@@ -7,5 +7,5 @@ input.each_line do |line|
     lastNumber = line[-1]
     temp_result = "#{firstNumber}#{lastNumber}"
     result = result + temp_result.to_i  
+    puts result
 end
-puts result
