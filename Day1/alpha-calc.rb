@@ -14,3 +14,5 @@ input.each_line do |input_string|
 end
 
 puts "#{result_array}"
+
+input.close

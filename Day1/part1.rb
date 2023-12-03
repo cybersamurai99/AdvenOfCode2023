@@ -9,3 +9,5 @@ input.each_line do |line|
     result = result + temp_result.to_i  
     puts result
 end
+
+input.close

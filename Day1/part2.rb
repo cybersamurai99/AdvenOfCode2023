@@ -39,3 +39,5 @@ input.each_line do |line|
     puts
     puts
 end
+
+input.close
