@@ -33,7 +33,7 @@ def sort_input(input_data)
   end
   
 
-  File.open("input.txt") do |input_data|
+  File.open("input_example.txt") do |input_data|
     sort_input(input_data)
   end
   
