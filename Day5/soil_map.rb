@@ -1,25 +1,24 @@
-seeds = [ 79, 14, 55, 13]
-src_start = 50
-dst_start = 52
-range_length = 48
-src_range = (src_start..(src_start + (range_length -1))).to_a
-dst_range = (dst_start..(dst_start + (range_length -1))).to_a
+def seed_calc(seeds, src_start, dst_start, range_length)
+  result = []  # Initialize an empty array
+  src_range = (src_start..(src_start + (range_length -1))).to_a
+  dst_range = (dst_start..(dst_start + (range_length -1))).to_a
 
+  seeds.each do |seed|
+    if src_range.include?(seed)
+      seed_index = src_range.index(seed)
+      soil = dst_range[seed_index]
+    else
+      soil = seed
+    end
 
-puts src_range.inspect
+    result << soil  # Append the result as a hash to the array
+  end
 
-# seeds.each do |seed|
-# seed_index = src_range.index(seed)
-# soil = seed
+  result  # Return the array of results
+end
 
-# puts seed_index.inspect
-# puts dst_range[seed_index].nil?
+#seeds = [79, 14, 55, 13]
+seeds = [81, 14, 57, 13]
 
-# if dst_range[seed_index].nil?
-# else
-#     soil = dst_range[seed_index] 
-# end
-
-# puts "Seed #{seed} -> #{soil}"
-#end
-
+#puts seed_calc(seeds, 50, 52, 48).inspect
+puts seed_calc(seeds, 0, 39, 15).inspect
