@@ -76,28 +76,27 @@ humidity_to_location_map = extract_map_data(file_contents, 'humidity-to-location
 # puts "Seeds Array: #{seeds.inspect}"
 
 all_locations = ["seed_to_soil_map", "soil_to_fertilizer_map", "fertilizer_to_water_map", "fertilizer_to_water_map", "light_to_temperature_map", "temperature_to_humidity_map", "humidity_to_location_map"]
-puts "Seeds = #{seeds.inspect}"
 
+
+map_count = 0
 for location_map in [seed_to_soil_map, soil_to_fertilizer_map, fertilizer_to_water_map, fertilizer_to_water_map, light_to_temperature_map, temperature_to_humidity_map, humidity_to_location_map ]
-  #puts "####################################"
-  puts seeds.inspect
-    
+
       map_run = 0
       location_map.each do |map|
-        # puts "Start of map run #{map_run}"
-        # puts map.inspect
-        
-        # puts "seeds: #{seeds}"
-        # puts "src_start: #{map[1]}"
-        # puts "dst_start: #{map[0]}"
-        # puts "range_length: #{map[2]}"
+        # puts "Start of map run #{map_run}" if map_count == 1
+        # puts "seeds: #{seeds}" if map_count == 1
+        # puts "src_start: #{map[1]}" if map_count == 1
+        # puts "dst_start: #{map[0]}" if map_count == 1
+        # puts "range_length: #{map[2]}" if map_count == 1
         seeds = seed_calc(seeds, map[1], map[0], map[2])
-        map_run =+ 1
-       # puts
+        map_run += 1
+        #puts if map_count == 1
       end
-      #puts "Seeds after run #{seeds.inspect}"
+      #print all_locations[map_count] if map_count == 1
+      puts "Seed result: #{seeds.inspect}"
+      
 
-#map_count =+ 1
+  map_count += 1
 end
 
 
