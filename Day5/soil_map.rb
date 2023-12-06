@@ -17,8 +17,8 @@ def seed_calc(seeds, src_start, dst_start, range_length)
   result  # Return the array of results
 end
 
-#seeds = [79, 14, 55, 13]
-seeds = [81, 14, 57, 13]
+seeds = [79, 14, 55, 13]
+#seeds = [81, 14, 57, 13]
 
-#puts seed_calc(seeds, 50, 52, 48).inspect
-puts seed_calc(seeds, 0, 39, 15).inspect
+puts seed_calc(seeds, 50, 52, 48).inspect
+#puts seed_calc(seeds, 0, 39, 15).inspect

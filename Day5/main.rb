@@ -1,18 +1,18 @@
-def seed_calc(seed_array, src_start, dst_start, range_length)
-  result = [] 
-  range_length = range_length -1 unless range_length == 0
-  src_range = (src_start..(src_start + (range_length -1))).to_a
-  dst_range = (dst_start..(dst_start + (range_length -1))).to_a
+def seed_calc(seeds, src_start, dst_start, range_length)
+  result = []
 
-  seed_array.each do |seed|
-    if src_range.include?(seed)
-      seed_index = src_range.index(seed)
-      soil = dst_range[seed_index]
-    else
-      soil = seed
-    end
+  seeds.each do |seed|
+      index = nil
 
-    result << soil 
+      for x in src_start..(src_start + (range_length - 1))
+          if x == seed
+              index = x - src_start
+              break
+          end
+      end
+
+      soil = index ? dst_start + index : seed
+      result << soil
   end
 
   result
@@ -75,12 +75,13 @@ humidity_to_location_map = extract_map_data(file_contents, 'humidity-to-location
 # puts "Humidity to Location Map: #{humidity_to_location_map.inspect}"
 # puts "Seeds Array: #{seeds.inspect}"
 
-all_locations = ["seed_to_soil_map", "soil_to_fertilizer_map", "fertilizer_to_water_map", "fertilizer_to_water_map", "light_to_temperature_map", "temperature_to_humidity_map", "humidity_to_location_map"]
+all_locations = ["Original", "seed_to_soil_map", "soil_to_fertilizer_map", "fertilizer_to_water_map", "light_to_temperature_map", "temperature_to_humidity_map", "humidity_to_location_map"]
 
 
 map_count = 0
-for location_map in [seed_to_soil_map, soil_to_fertilizer_map, fertilizer_to_water_map, fertilizer_to_water_map, light_to_temperature_map, temperature_to_humidity_map, humidity_to_location_map ]
-
+#for location_map in [water_to_light_map]
+for location_map in [seed_to_soil_map, soil_to_fertilizer_map, fertilizer_to_water_map, light_to_temperature_map, temperature_to_humidity_map, humidity_to_location_map ]
+  print "Seeds Array: #{seeds.inspect}"
       map_run = 0
       location_map.each do |map|
         # puts "Start of map run #{map_run}" if map_count == 1
@@ -92,23 +93,12 @@ for location_map in [seed_to_soil_map, soil_to_fertilizer_map, fertilizer_to_wat
         map_run += 1
         #puts if map_count == 1
       end
-      #print all_locations[map_count] if map_count == 1
-      puts "Seed result: #{seeds.inspect}"
+      puts all_locations[map_count]
       
-
+    
   map_count += 1
 end
 
-
-
-
-
-
-
-
-# testing
-#seeds = [79, 14, 55, 13]
-#puts seed_calc(seeds, 50, 52, 48).inspect
 
 
 
